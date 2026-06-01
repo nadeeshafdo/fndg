@@ -17,12 +17,9 @@ endif()
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
-# Source files
-set(SOURCES
-    ${CMAKE_SOURCE_DIR}/src/main.c
-    ${CMAKE_SOURCE_DIR}/src/search.c
-    ${CMAKE_SOURCE_DIR}/src/traverse.c
-)
+# Source files (relative paths work better cross-platform)
+file(GLOB_RECURSE SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c")
+list(SORT SOURCES)
 
 # Add executable
 add_executable(fndg ${SOURCES})

@@ -33,19 +33,27 @@ jobs:
 
     - name: Build (Linux / macOS)
       if: runner.os != 'Windows'
-      run: make
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        cmake --build .
 
     - name: Setup MSYS2 (Windows)
       if: runner.os == 'Windows'
       uses: msys2/setup-msys2@v2
       with:
-        install: make mingw-w64-x86_64-gcc
+        install: cmake mingw-w64-x86_64-gcc
         path-type: inherit
 
     - name: Build (Windows)
       if: runner.os == 'Windows'
       shell: msys2 {0}
-      run: make
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        cmake --build .
 
     - name: Rename Binary for Upload
       shell: bash

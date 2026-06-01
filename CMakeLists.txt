@@ -19,9 +19,9 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Source files
 set(SOURCES
-    src/main.c
-    src/search.c
-    src/traverse.c
+    ${CMAKE_SOURCE_DIR}/src/main.c
+    ${CMAKE_SOURCE_DIR}/src/search.c
+    ${CMAKE_SOURCE_DIR}/src/traverse.c
 )
 
 # Add executable

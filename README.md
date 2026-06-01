@@ -10,14 +10,17 @@ It automatically skips binary files, ignores symlink loops, and color-codes the 
 Go to the [Releases](../../releases) tab and download the executable for your OS (Linux, macOS, or Windows). 
 Put the binary in a directory that is in your system's `PATH`.
 
-### From Source (Linux / macOS / Windows Git Bash)
-Requirements: `git`, `gcc`, `make`
+### From Source (Linux / macOS / Windows)
+Requirements: `git`, `cmake` (3.10+), `gcc` or `clang`
 
 ```bash
 git clone https://github.com/nadeeshafdo/fndg.git
 cd fndg
-make
-sudo make install
+mkdir build
+cd build
+cmake ..
+cmake --build .
+sudo cmake --install .
 ```
 
 ## Usage
@@ -43,7 +46,8 @@ fndg --version
 ## Architecture
 
 * `src/` - Contains the modular C codebase (Main, Search, Traverse).
-* `build/` - Output directory for object files and the final compiled binary.
+* `CMakeLists.txt` - CMake build configuration for cross-platform compilation.
+* `build/` - Output directory for the compiled binary (generated after build).
 * `.github/workflows/` - CI/CD pipeline for automated cross-platform releases.
 
 ## License

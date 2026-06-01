@@ -4,12 +4,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
+
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 
 #ifdef _WIN32
 #include <windows.h>
-#define DIR WIN32_FIND_DATAA
-#define dirent WIN32_FIND_DATAA
 #else
 #include <dirent.h>
 #endif

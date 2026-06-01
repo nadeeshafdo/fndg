@@ -49,7 +49,12 @@ jobs:
 
     - name: Rename Binary for Upload
       shell: bash
-      run: mv build/${{ matrix.artifact_name }} build/${{ matrix.asset_name }}
+      run: |
+        if [ -f "build/Release/${{ matrix.artifact_name }}" ]; then
+          mv build/Release/${{ matrix.artifact_name }} build/${{ matrix.asset_name }}
+        else
+          mv build/${{ matrix.artifact_name }} build/${{ matrix.asset_name }}
+        fi
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4

@@ -28,15 +28,18 @@ add_executable(fndg ${SOURCES})
 target_include_directories(fndg PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
 # Compiler flags
-target_compile_options(fndg PRIVATE
-    -Wall
-    -Wextra
-    -O3
-)
-
-# Strip binary in Release mode
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    target_compile_options(fndg PRIVATE -s)
+if(MSVC)
+    target_compile_options(fndg PRIVATE /W4 /O2)
+else()
+    target_compile_options(fndg PRIVATE
+        -Wall
+        -Wextra
+        -O3
+    )
+    # Strip binary in Release mode (Unix-like only)
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        target_compile_options(fndg PRIVATE -s)
+    endif()
 endif()
 
 # Version definition
